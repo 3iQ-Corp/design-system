@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>3iQ editorial hero — light</title>
+  <link rel="stylesheet" href="../../tokens/tokens.css" />
+  <link rel="stylesheet" href="_layouts.css" />
+  <style>
+    /* Light editorial hero — matches the "We believe digital asset investing
+       can change the world" reference. */
+    .editorial {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: var(--sp-10);
+      padding-top: var(--sp-6);
+    }
+
+    /* Left column ─────────────────────────── */
+    .editorial .lead h1 {
+      font-family: var(--font-heading);
+      font-weight: var(--fw-light);
+      font-size: clamp(3.5rem, 6.5vw, 6.5rem);
+      line-height: 1em;
+      letter-spacing: var(--ls-heading);
+      margin: 0;
+      max-width: 14ch;
+    }
+
+    /* Right column ────────────────────────── */
+    .editorial .detail {
+      padding-top: var(--sp-4);
+      display: grid;
+      gap: var(--sp-5);
+    }
+    .editorial .detail .sub {
+      padding-top: var(--sp-2);
+      border-top: var(--border-width-main) solid var(--border-muted);
+    }
+    .editorial .detail .sub h2 {
+      font-family: var(--font-heading);
+      font-weight: var(--fw-light);
+      font-size: clamp(2rem, 2.8vw, 2.75rem);
+      line-height: 1.1em;
+      letter-spacing: var(--ls-heading);
+      margin: 0;
+      max-width: 20ch;
+    }
+    .editorial .body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-3);
+      font-family: var(--font-body);
+      font-weight: var(--fw-medium);
+      font-size: var(--fs-text-main);
+      line-height: var(--lh-relaxed);
+      color: var(--swatch-dark);
+    }
+    .editorial .body p { margin: 0 0 var(--sp-2) 0; }
+    .editorial .body p + p { margin-top: var(--sp-2); }
+
+    .editorial .footer-link {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--sp-2) 0 0 0;
+      margin-top: var(--sp-4);
+      border-top: 1px solid rgba(8, 14, 35, 0.25);
+      font-family: var(--font-body);
+      font-weight: var(--fw-medium);
+      font-size: var(--fs-text-main);
+      color: var(--swatch-dark);
+      text-decoration: none;
+    }
+    .editorial .footer-link svg { flex: none; }
+  </style>
+</head>
+<body data-theme="light">
+  <div class="spec-header">
+    <span>Editorial hero · light</span>
+    <a href="./index.html">Back to specimens</a>
+  </div>
+
+  <section class="bleed gradient-cream">
+    <div class="container editorial">
+      <div class="lead">
+        <h1>We believe digital asset investing can change the world</h1>
+      </div>
+
+      <div class="detail">
+        <div class="sub">
+          <h2>And we&rsquo;re willing to stand up for what we believe in</h2>
+        </div>
+
+        <div class="body">
+          <div>
+            <p>As an alternative investment firm, we&rsquo;ve always looked for ways to help investors diversify their portfolios and grow their returns. In 2014, we recognized that digital assets had the potential to transform the economy and improve investors&rsquo; lives &mdash; but there wasn&rsquo;t a safe, accessible way to invest in them.</p>
+            <p>We led the charge to achieve comprehensive regulation for digital assets in Canada, and launched a suite of</p>
+          </div>
+          <div>
+            <p>secure, compliant, tax-advantageous products that offer investors around the world a safe, simple way to invest in digital assets.</p>
+            <p>Ever since then, we&rsquo;ve been dedicated to bringing confidence and guidance to digital asset investing. Today, we&rsquo;re a leader in the industry, navigating regulations around the world and continuing our legacy of innovation with every product we develop.</p>
+          </div>
+        </div>
+
+        <a class="footer-link" href="#">
+          <span>Industry Recognition</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M4 12L12 4M12 4H6M12 4V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

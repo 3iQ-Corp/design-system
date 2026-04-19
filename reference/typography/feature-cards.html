@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>3iQ feature cards — sky gradient</title>
+  <link rel="stylesheet" href="../../tokens/tokens.css" />
+  <link rel="stylesheet" href="_layouts.css" />
+  <style>
+    /* "Our digital asset solutions" reference.
+       Section uses gradient-card-sky as a full-bleed background — see note in
+       reference/gradients.md ("card tint gradients"). The reference site uses
+       them as soft section backgrounds too, not only on cards. */
+
+    .cards-section { padding-top: var(--sp-6); }
+
+    .cards-section .intro {
+      max-width: 44rem;
+      margin-bottom: var(--sp-8);
+    }
+    .cards-section h1 {
+      font-family: var(--font-heading);
+      font-weight: var(--fw-light);
+      font-size: clamp(2.75rem, 4vw, 4rem);
+      line-height: 1.05em;
+      letter-spacing: var(--ls-heading);
+      margin: 0 0 var(--sp-3) 0;
+      max-width: 18ch;
+    }
+    .cards-section .intro p {
+      font-family: var(--font-body);
+      font-weight: var(--fw-medium);
+      font-size: var(--fs-text-main);
+      line-height: var(--lh-relaxed);
+      margin: 0;
+      max-width: 44ch;
+      color: var(--swatch-dark);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-3);
+    }
+    .card {
+      background: var(--swatch-light);
+      border-radius: var(--radius-main);
+      padding: var(--sp-5);
+      display: grid;
+      gap: var(--sp-3);
+      box-shadow: 0 1px 0 rgba(8, 14, 35, 0.04);
+    }
+    .card h2 {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: var(--fs-h6);
+      line-height: 1.2em;
+      margin: 0;
+      color: var(--swatch-dark);
+    }
+    .card .lede {
+      font-family: var(--font-body);
+      font-weight: var(--fw-medium);
+      font-size: var(--fs-text-main);
+      line-height: var(--lh-relaxed);
+      margin: 0;
+      max-width: 52ch;
+      color: var(--swatch-dark);
+      opacity: 1;
+    }
+
+    .card ul {
+      list-style: none;
+      padding: 0;
+      margin: var(--sp-1) 0 0 0;
+      border-top: 1px solid rgba(8, 14, 35, 0.12);
+    }
+    .card li {
+      display: grid;
+      grid-template-columns: 1.5rem 1fr;
+      gap: var(--sp-1-5);
+      padding: var(--sp-1-5) 0;
+      border-bottom: 1px solid rgba(8, 14, 35, 0.12);
+      font-family: var(--font-body);
+      font-weight: var(--fw-medium);
+      font-size: var(--fs-text-main);
+      line-height: var(--lh-relaxed);
+      color: var(--swatch-dark);
+    }
+    .check {
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: var(--radius-x-small);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: none;
+    }
+    .card--sand .check { background: var(--swatch-brand); }     /* #D6D5BF */
+    .card--sage .check { background: var(--swatch-brand-4); }   /* #B8C6C6 */
+    .check svg { display: block; }
+
+    @media (max-width: 1024px) {
+      .cards { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body data-theme="light">
+  <div class="spec-header">
+    <span>Feature cards · sky gradient</span>
+    <a href="./index.html">Back to specimens</a>
+  </div>
+
+  <section class="bleed gradient-sky">
+    <div class="container cards-section">
+
+      <div class="intro">
+        <h1>Our digital asset solutions</h1>
+        <p>We offer a range of passive investment solutions designed to provide exposure to the dynamic world of digital assets. Our product suite is tailored to meet diverse investor needs and risk profiles:</p>
+      </div>
+
+      <div class="cards">
+
+        <article class="card card--sand">
+          <h2>Single asset exposure</h2>
+          <p class="lede">Gain focused exposure to leading individual cryptocurrencies through our carefully structured investment vehicles. These products offer a secure and regulated way to invest in specific digital assets, allowing you to:</p>
+          <ul>
+            <li>
+              <span class="check" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7.5L5.5 10.5L11 4" stroke="#080E23" stroke-width="1.5" stroke-linecap="square"/></svg>
+              </span>
+              <span>Access major cryptocurrencies through familiar investment structures</span>
+            </li>
+            <li>
+              <span class="check" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7.5L5.5 10.5L11 4" stroke="#080E23" stroke-width="1.5" stroke-linecap="square"/></svg>
+              </span>
+              <span>Benefit from our institutional-grade security and custody solutions</span>
+            </li>
+            <li>
+              <span class="check" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7.5L5.5 10.5L11 4" stroke="#080E23" stroke-width="1.5" stroke-linecap="square"/></svg>
+              </span>
+              <span>Enjoy the simplicity of investing without the complexity of direct cryptocurrency ownership</span>
+            </li>
+          </ul>
+        </article>
+
+        <article class="card card--sage">
+          <h2>Multi-asset funds</h2>
+          <p class="lede">For those seeking broader exposure, our diversified funds provide access to a curated selection of digital assets. These products offer a balanced approach to investing in the cryptocurrency market, enabling you to:</p>
+          <ul>
+            <li>
+              <span class="check" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7.5L5.5 10.5L11 4" stroke="#080E23" stroke-width="1.5" stroke-linecap="square"/></svg>
+              </span>
+              <span>Invest in a diversified portfolio of digital assets with a single investment</span>
+            </li>
+            <li>
+              <span class="check" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7.5L5.5 10.5L11 4" stroke="#080E23" stroke-width="1.5" stroke-linecap="square"/></svg>
+              </span>
+              <span>Benefit from our expert selection and ongoing portfolio management</span>
+            </li>
+            <li>
+              <span class="check" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7.5L5.5 10.5L11 4" stroke="#080E23" stroke-width="1.5" stroke-linecap="square"/></svg>
+              </span>
+              <span>Potentially reduce volatility through diversification across multiple digital assets</span>
+            </li>
+          </ul>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+</body>
+</html>

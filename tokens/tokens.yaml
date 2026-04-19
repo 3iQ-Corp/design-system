@@ -49,46 +49,52 @@ color:
   role:
     # Dark theme (default for hero / social / slides)
     dark:
-      bg:         "#080E23"      # swatch.dark
-      surface:    "#4C3D32"      # swatch.dark_secondary (for gradient bottoms)
-      text:       "#FDFCFA"      # swatch.light
-      text_muted: "#D6D5BF"      # swatch.brand
-      border:     "#FDFCFA"      # swatch.light (low opacity in use)
-      cta_bg:     "transparent"  # CTA on dark uses a gradient (see gradient.button_dark)
-      cta_text:   "#080E23"      # swatch.brand_text = swatch.dark
-      accent:     "#EDC576"      # swatch.yellow
-      rule:       "#EDC576"
+      bg:           "#080E23"        # swatch.dark
+      surface:      "#4C3D32"        # swatch.dark_secondary (for gradient bottoms)
+      text:         "#FDFCFA"        # swatch.light
+      text_muted:   "#D6D5BF"        # swatch.brand
+      border:       "#FDFCFA"        # swatch.light
+      border_muted: "rgb(253 252 250 / 0.25)"  # swatch.light @ 25% — for hairlines on dark
+      cta_bg:       "transparent"    # CTA on dark uses a gradient (see gradient.button_dark)
+      cta_text:     "#080E23"        # swatch.brand_text = swatch.dark
+      accent:       "#EDC576"        # swatch.yellow
+      rule:         "#EDC576"
+      rule_muted:   "rgb(253 252 250 / 0.25)"
 
     # Light theme (for docs, long-form, paper outputs)
     light:
-      bg:         "#FDFCFA"      # swatch.light
-      surface:    "#F8F7F5"      # swatch.light_tertiary
-      text:       "#080E23"      # swatch.dark
-      text_muted: "#4C3D32"      # swatch.dark_secondary
-      border:     "#080E23"      # swatch.dark (low opacity in use)
-      cta_bg:     "#D6D5BF"      # swatch.brand (solid brand fill on light)
-      cta_text:   "#080E23"
-      accent:     "#EDC576"
-      rule:       "#080E23"
+      bg:           "#FDFCFA"        # swatch.light
+      surface:      "#F8F7F5"        # swatch.light_tertiary
+      text:         "#080E23"        # swatch.dark
+      text_muted:   "#4C3D32"        # swatch.dark_secondary
+      border:       "#080E23"        # swatch.dark
+      border_muted: "rgb(8 14 35 / 0.25)"      # swatch.dark @ 25%
+      cta_bg:       "#D6D5BF"        # swatch.brand (solid brand fill on light)
+      cta_text:     "#080E23"
+      accent:       "#EDC576"
+      rule:         "#080E23"
+      rule_muted:   "rgb(8 14 35 / 0.25)"
 
   # Fund-type theming — 3iq.io maps product lines to gradient themes.
   # Use these when producing anything associated with a specific fund family.
+  # Note: fund_theme.accent also overrides role.*.rule when applied, so
+  # eyebrows and hairline rules follow the themed highlight.
   fund_theme:
     etf:
       label: "ETF / Forge"
       gradient_top:    "#080E23"   # swatch.dark
       gradient_bottom: "#4C3D32"   # swatch.dark_secondary
-      accent:          "#EDC576"   # yellow
+      accent:          "#EDC576"   # yellow — also sets --rule
     cef:
       label: "CEF / Growth"
       gradient_top:    "#1E3239"
       gradient_bottom: "#02393C"
-      accent:          "#4C9478"   # green
+      accent:          "#4C9478"   # green — also sets --rule
     multi_crypto:
       label: "Multi-crypto / Warmth"
       gradient_top:    "#1C0E1D"
       gradient_bottom: "#3A1717"
-      accent:          "#E6704E"   # orange
+      accent:          "#E6704E"   # orange — also sets --rule
 
 # ─────────────────────────────────────────────────────────────────────────────
 # TYPOGRAPHY — sourced from --font--* and heading scale on 3iq.io
@@ -332,6 +338,6 @@ disclaimer:
     constitute investment advice or an offer to sell or solicitation to
     buy any security.
   footer: >
-    © 2024 3iQ Corp. All rights reserved. Investing in digital assets
+    © 2026 3iQ Corp. All rights reserved. Investing in digital assets
     involves risks. Please read all offering documents carefully before
     investing.

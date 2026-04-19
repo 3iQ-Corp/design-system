@@ -1,0 +1,102 @@
+/* Shared layout rules for the composition specimens
+   (editorial-hero, numbered-grid, feature-cards, forge-hero).
+   Only composition rules live here — all brand values come from tokens.css. */
+
+@import url("./_base.css");
+
+/* ── Spec header (shown above each composition) ─────────────────────── */
+.spec-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--sp-4);
+  padding: var(--sp-3) var(--sp-8);
+  background: var(--swatch-light);
+  color: var(--swatch-dark);
+  border-bottom: var(--border-width-main) solid var(--swatch-dark);
+  font-family: var(--font-body);
+  font-size: var(--fs-text-small);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+}
+.spec-header a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: var(--border-width-main) solid currentColor;
+}
+
+/* ── Section primitives ─────────────────────────────────────────────── */
+.bleed {
+  padding: var(--sp-8) var(--sp-8);
+  min-height: 100vh;
+}
+.bleed.gradient-sky   { background: var(--gradient-card-sky); }
+.bleed.gradient-cream { background: var(--gradient-card-cream); }
+.bleed.gradient-forge { background: var(--gradient-forge); color: var(--swatch-light); }
+
+.container {
+  max-width: 96rem;
+  margin: 0 auto;
+}
+
+/* ── Typography shortcuts (re-used across layouts) ──────────────────── */
+.serif {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-light);
+  letter-spacing: var(--ls-heading);
+  line-height: var(--lh-tight);
+}
+.sans {
+  font-family: var(--font-body);
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-text-small);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+  color: var(--accent);
+  margin: 0 0 var(--sp-1) 0;
+}
+
+.lede {
+  font-family: var(--font-body);
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-text-main);
+  line-height: var(--lh-relaxed);
+  max-width: 36ch;
+  color: var(--text);
+  opacity: 0.9;
+  margin: 0;
+}
+
+.rule-thin {
+  border: 0;
+  border-top: var(--border-width-main) solid var(--rule-muted);
+  margin: 0;
+}
+/* Forge surfaces swap to dark-theme semantic tokens so --rule-muted
+   resolves against the light swatch. */
+.bleed.gradient-forge {
+  --border-muted: rgb(253 252 250 / 0.25);
+  --rule-muted:   rgb(253 252 250 / 0.25);
+  --text-muted:   var(--swatch-brand);
+}
+
+/* ── Buttons (for the footer/CTA bits) ──────────────────────────────── */
+.btn-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  width: 100%;
+  padding: var(--sp-1-5) 0;
+  font-family: var(--font-body);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-text-main);
+  color: inherit;
+  text-decoration: none;
+  border-top: 1px solid currentColor;
+}
+.btn-arrow svg { flex: none; }

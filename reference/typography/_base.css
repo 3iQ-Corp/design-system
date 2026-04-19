@@ -1,0 +1,41 @@
+/* Shared base for all specimens.
+   - Registers the local placeholder fonts (see README for caveat).
+   - Applies body reset using tokens only.
+   Imported by _specimen.css and _layouts.css. */
+
+/* Local placeholder fonts — see AGENTS.md. These are NOT the licensed
+   Denton-Light / Neue Haas Grotesk Display files. */
+@font-face {
+  font-family: "Denton";
+  src: url("../../assets/fonts/DentonVariableTest-VF.otf") format("opentype-variations"),
+       url("../../assets/fonts/DentonVariableTest-VF.otf") format("opentype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Neue Haas Grotesk Display";
+  src: url("../../assets/fonts/FunnelSans-VariableFont_wght.ttf") format("truetype-variations"),
+       url("../../assets/fonts/FunnelSans-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-weight: var(--fw-medium);      /* brand body weight is 500 */
+  font-size: var(--fs-text-main);
+  line-height: var(--lh-relaxed);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

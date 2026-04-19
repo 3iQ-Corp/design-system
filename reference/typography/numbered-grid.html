@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>3iQ numbered grid — light</title>
+  <link rel="stylesheet" href="../../tokens/tokens.css" />
+  <link rel="stylesheet" href="_layouts.css" />
+  <style>
+    /* Numbered feature grid — "Redefining alternative investments" reference.
+       Five columns, each with a number, a rule, a sans-bold sub-headline,
+       and a sans body paragraph. */
+
+    .grid-section {
+      padding-top: var(--sp-6);
+    }
+
+    .grid-section .intro {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: var(--sp-10);
+      max-width: 72rem;
+      margin-bottom: var(--sp-8);
+    }
+    .grid-section h1 {
+      font-family: var(--font-heading);
+      font-weight: var(--fw-light);
+      font-size: clamp(3rem, 5.5vw, 5.5rem);
+      line-height: 1em;
+      letter-spacing: var(--ls-heading);
+      margin: 0;
+      max-width: 14ch;
+    }
+    .grid-section .intro-body {
+      align-self: end;
+      padding-bottom: var(--sp-1);
+      font-family: var(--font-body);
+      font-weight: var(--fw-medium);
+      font-size: var(--fs-text-main);
+      line-height: var(--lh-relaxed);
+      max-width: 34ch;
+      color: var(--swatch-dark);
+    }
+
+    .grid-5 {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: var(--sp-3);
+    }
+    .grid-5 .cell {
+      display: grid;
+      gap: var(--sp-2-5);
+      grid-auto-rows: min-content;
+    }
+    .grid-5 .num {
+      font-family: var(--font-body);
+      font-weight: var(--fw-semibold);
+      font-size: var(--fs-text-small);
+      letter-spacing: var(--ls-wide);
+      padding-bottom: var(--sp-0-75);
+      border-bottom: 1px solid rgba(8, 14, 35, 0.3);
+    }
+    .grid-5 h3 {
+      font-family: var(--font-body);
+      font-weight: 700;           /* sans bold per reference */
+      font-size: var(--fs-h6);
+      line-height: 1.15em;
+      letter-spacing: 0;
+      margin: 0;
+      max-width: 14ch;
+      color: var(--swatch-dark);
+    }
+    .grid-5 p {
+      font-family: var(--font-body);
+      font-weight: var(--fw-medium);
+      font-size: var(--fs-text-main);
+      line-height: var(--lh-relaxed);
+      margin: 0;
+      max-width: 22ch;
+      color: var(--swatch-dark);
+    }
+
+    @media (max-width: 1024px) {
+      .grid-5 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-4); }
+      .grid-section .intro { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body data-theme="light">
+  <div class="spec-header">
+    <span>Numbered grid · light</span>
+    <a href="./index.html">Back to specimens</a>
+  </div>
+
+  <section class="bleed gradient-cream">
+    <div class="container grid-section">
+
+      <div class="intro">
+        <h1>Redefining alternative investments</h1>
+        <p class="intro-body">We believe digital assets are revolutionizing the alternative investment landscape. Here&rsquo;s why:</p>
+      </div>
+
+      <div class="grid-5">
+        <article class="cell">
+          <div class="num">01</div>
+          <h3>Unparalleled diversification</h3>
+          <p>Digital assets have shown low correlation with traditional asset classes, offering a new dimension of portfolio diversification that goes beyond conventional alternatives.</p>
+        </article>
+
+        <article class="cell">
+          <div class="num">02</div>
+          <h3>Enhanced liquidity</h3>
+          <p>Unlike many traditional alternative investments, digital assets offer 24/7 global markets and high liquidity, allowing for more flexible portfolio management.</p>
+        </article>
+
+        <article class="cell">
+          <div class="num">03</div>
+          <h3>Potential for asymmetric returns</h3>
+          <p>Digital assets have demonstrated the potential for significant upside, characteristic of successful alternative investments, while operating in a nascent market with room for growth.</p>
+        </article>
+
+        <article class="cell">
+          <div class="num">04</div>
+          <h3>Technological edge</h3>
+          <p>As blockchain technology advances, digital assets are at the forefront of financial innovation, offering exposure to cutting-edge developments in fintech and beyond.</p>
+        </article>
+
+        <article class="cell">
+          <div class="num">05</div>
+          <h3>Global accessibility</h3>
+          <p>Digital assets provide access to a truly global market, transcending geographical boundaries that often limit traditional alternative investments.</p>
+        </article>
+      </div>
+
+    </div>
+  </section>
+</body>
+</html>

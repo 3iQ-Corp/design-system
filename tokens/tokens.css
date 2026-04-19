@@ -101,6 +101,17 @@
   --border-width-main:  1px;
   --border-width-large: 2px;
 
+  /* ─── SECTION PADDING ─────────────────────────────────────────────── */
+  /* Aliases for the brand's section rhythm. Mirrors tokens.padding.* */
+  --pad-v-none:    0rem;
+  --pad-v-xsmall:  2.5rem;
+  --pad-v-small:   5rem;
+  --pad-v-main:    7rem;
+  --pad-v-large:   10rem;
+  --pad-v-xlarge:  15rem;
+  --pad-h-small:   2.5rem;
+  --pad-h-main:    5rem;
+
   /* ─── GRADIENTS ───────────────────────────────────────────────────── */
   --gradient-forge:   linear-gradient(180deg, #080E23, #4C3D32);
   --gradient-growth:  linear-gradient(180deg, #1E3239, #02393C);
@@ -118,42 +129,50 @@
 /* ─── SEMANTIC ROLES — default (dark) theme ─────────────────────────── */
 :root,
 [data-theme="dark"] {
-  --bg:         var(--swatch-dark);
-  --surface:    var(--swatch-dark-secondary);
-  --text:       var(--swatch-light);
-  --text-muted: var(--swatch-brand);
-  --border:     var(--swatch-light);
-  --cta-bg:     transparent;            /* use --gradient-button-dark for fill */
-  --cta-text:   var(--swatch-dark);
-  --accent:     var(--swatch-yellow);
-  --rule:       var(--swatch-yellow);
-  --bg-gradient: var(--gradient-forge); /* default hero background */
+  --bg:           var(--swatch-dark);
+  --surface:      var(--swatch-dark-secondary);
+  --text:         var(--swatch-light);
+  --text-muted:   var(--swatch-brand);
+  --border:       var(--swatch-light);
+  --border-muted: rgb(253 252 250 / 0.25);  /* swatch-light @ 25% */
+  --cta-bg:       transparent;              /* use --gradient-button-dark for fill */
+  --cta-text:     var(--swatch-dark);
+  --accent:       var(--swatch-yellow);
+  --rule:         var(--swatch-yellow);
+  --rule-muted:   rgb(253 252 250 / 0.25);
+  --bg-gradient:  var(--gradient-forge);    /* default hero background */
 }
 
 /* Light theme for paper / docs / long-form */
 [data-theme="light"] {
-  --bg:         var(--swatch-light);
-  --surface:    var(--swatch-light-tertiary);
-  --text:       var(--swatch-dark);
-  --text-muted: var(--swatch-dark-secondary);
-  --border:     var(--swatch-dark);
-  --cta-bg:     var(--swatch-brand);
-  --cta-text:   var(--swatch-dark);
-  --accent:     var(--swatch-yellow);
-  --rule:       var(--swatch-dark);
-  --bg-gradient: none;
+  --bg:           var(--swatch-light);
+  --surface:      var(--swatch-light-tertiary);
+  --text:         var(--swatch-dark);
+  --text-muted:   var(--swatch-dark-secondary);
+  --border:       var(--swatch-dark);
+  --border-muted: rgb(8 14 35 / 0.25);       /* swatch-dark @ 25% */
+  --cta-bg:       var(--swatch-brand);
+  --cta-text:     var(--swatch-dark);
+  --accent:       var(--swatch-yellow);
+  --rule:         var(--swatch-dark);
+  --rule-muted:   rgb(8 14 35 / 0.25);
+  --bg-gradient:  none;
 }
 
-/* Fund-theme overlays — apply to dark backgrounds */
+/* Fund-theme overlays — apply on any theme; also aligns --rule with --accent
+   so eyebrows, rules, and ticker-badges share the themed highlight colour. */
 [data-fund-theme="etf"] {
   --bg-gradient: var(--gradient-forge);
   --accent:      var(--swatch-yellow);
+  --rule:        var(--swatch-yellow);
 }
 [data-fund-theme="cef"] {
   --bg-gradient: var(--gradient-growth);
   --accent:      var(--swatch-green);
+  --rule:        var(--swatch-green);
 }
 [data-fund-theme="multi-crypto"] {
   --bg-gradient: var(--gradient-warmth);
   --accent:      var(--swatch-orange);
+  --rule:        var(--swatch-orange);
 }
