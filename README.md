@@ -30,12 +30,18 @@ surfaces — see `tokens.gradient.forge` / `growth` / `warmth`.
 ```
 design-system/
 ├── AGENTS.md                ← READ FIRST if you are an LLM
+├── CHANGELOG.md
 ├── tokens/
 │   ├── tokens.yaml          ← human-readable source of truth
 │   ├── tokens.json          ← machine-readable (same data)
+│   ├── tokens.schema.json   ← JSON Schema for tokens.json
 │   └── tokens.css           ← CSS custom properties
 ├── reference/
-│   └── gradients.md         ← when to use forge vs growth vs warmth
+│   ├── README.md
+│   ├── gradients.md         ← when to use Forge vs Growth vs Warmth
+│   └── typography/          ← live HTML specimens (see below)
+├── scripts/
+│   └── check-tokens.sh      ← sanity check that .yaml/.json/.css agree
 └── assets/
     ├── logos/3iq_logo.svg
     └── fonts/               ← placeholders until licensed fonts added
@@ -43,16 +49,46 @@ design-system/
         └── FunnelSans-VariableFont_wght.ttf
 ```
 
+## Specimens
+
+Open [`reference/typography/index.html`](./reference/typography/index.html)
+to view rendered examples of the type scale and brand layouts on both
+dark and light backgrounds. Every value is pulled from `tokens/tokens.css`
+— no local brand decisions. Useful as a design QA surface and as a
+reference artefact when briefing humans or other tools.
+
 ## Consuming from another project
+
+### Via the `3iq-brand` OpenCode skill (recommended for ad-hoc work)
+
+A companion skill lives in this repo at [`skills/3iq-brand/SKILL.md`](./skills/3iq-brand/SKILL.md).
+It inlines the critical tokens (palette, fallback fonts, gradients, voice
+rules) and auto-loads whenever you ask an LLM to produce 3iQ-branded
+output — slides, docs, emails, web pages — regardless of which repo
+you're in. It points back here (`AGENTS.md`, `tokens/`) for anything
+deeper.
+
+For OpenCode to discover it, symlink it into your skills directory once:
+
+```bash
+ln -s "$(pwd)/skills/3iq-brand" ~/.config/opencode/skills/3iq-brand
+```
+
+The skill is a thin, inlined snapshot of the tokens above. **This repo is
+the canonical source of truth.** When brand decisions change, update the
+tokens first, then update `skills/3iq-brand/SKILL.md` to match. Because
+the skill is symlinked (not copied), edits land in both places at once.
 
 ### Python
 ```python
 import json, pathlib
 tokens = json.loads(pathlib.Path("../design-system/tokens/tokens.json").read_text())
 
-bg       = tokens["color"]["role"]["dark"]["bg"]         # "#080E23"
-accent   = tokens["color"]["role"]["dark"]["accent"]     # "#EDC576"
-forge    = tokens["gradient"]["forge"]                    # linear-gradient(...)
+bg       = tokens["color"]["role"]["dark"]["bg"]          # "#080E23"
+accent   = tokens["color"]["role"]["dark"]["accent"]      # "#EDC576"
+forge    = tokens["gradient"]["forge"]["srgb"]             # sRGB fallback w/ eased midpoint
+#        = tokens["gradient"]["forge"]["oklab"]            # modern CSS (in oklab)
+#        = tokens["gradient"]["forge"]["stops"]            # structured stops
 headline = tokens["typography"]["secondary"]["family"]    # Denton, ...
 ```
 

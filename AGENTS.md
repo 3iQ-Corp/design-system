@@ -63,10 +63,23 @@ When producing anything that looks like marketing, include `tokens.disclaimer.st
 
 ## Producing output
 
-- **Web / HTML email:** import `tokens/tokens.css` or inline the `:root` block. Reference `var(--bg)`, `var(--cta-text)`, `var(--gradient-forge)`, etc.
+- **Web / HTML email:** import `tokens/tokens.css` or inline the `:root` block. Reference `var(--bg)`, `var(--cta-text)`, `var(--gradient-forge)`, etc. The CSS custom properties already resolve to OKLAB interpolation on supporting browsers and to an eased sRGB fallback everywhere else.
 - **Python / rendering scripts:** load `tokens/tokens.json` with `json.load` and pass values into Jinja / python-pptx / Playwright.
 - **Slides (`.pptx`):** map colors via `RGBColor.from_string(tokens["color"]["swatch"]["dark"][1:])`. Use `Times New Roman` and `Arial` as the font fallbacks.
 - **Static images / posters:** read the same tokens and map them onto the target format.
+
+### Gradients
+
+Gradient tokens are published as objects, not strings. Pick the form that matches your renderer:
+
+```python
+forge = tokens["gradient"]["forge"]
+forge["oklab"]  # "linear-gradient(in oklab 180deg, #080E23, #4C3D32)"  — modern CSS
+forge["srgb"]   # "linear-gradient(180deg, #080E23 0%, #28252C 50%, ...)" — PPTX/email/print
+forge["stops"]  # [{pos, hex}, ...] — for pipelines that build their own gradient
+```
+
+**Rule: every gradient in rendered output must read as smooth.** If you are hand-authoring a gradient that isn't in the tokens, compute the middle stop in OKLAB — don't interpolate two desaturated sRGB colors directly across a large surface. See `reference/gradients.md` for the rationale.
 
 ## When you're unsure
 
