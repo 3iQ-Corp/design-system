@@ -1,0 +1,83 @@
+{
+  "version": 1,
+  "workspace": {
+    "name": "design-system",
+    "createdAt": 1776737853713,
+    "preset": "starter"
+  },
+  "authorizedRoots": [
+    "/Users/chr3iqs/Sites/design-system"
+  ],
+  "blueprint": {
+    "emptyState": {
+      "title": "What do you want to do?",
+      "body": "This is the 3iQ design-system workspace. Pick a starting point or just type below.",
+      "starters": [
+        {
+          "id": "brand-overview",
+          "kind": "prompt",
+          "title": "Review the 3iQ brand",
+          "description": "Get a quick tour of palette, typography, gradients, and voice.",
+          "prompt": "Walk me through the 3iQ brand basics — palette, typography, hero gradients, and voice rules. Use the 3iq-brand skill."
+        },
+        {
+          "id": "scaffold-component",
+          "kind": "prompt",
+          "title": "Scaffold a brand-correct component",
+          "description": "Generate an HTML/CSS component using real 3iQ tokens and fonts.",
+          "prompt": "Help me scaffold a brand-correct component (pick one: four-part block, card, pill button, or KPI tile) using tokens and fonts from the 3iq-brand skill."
+        },
+        {
+          "id": "brand-copy-check",
+          "kind": "prompt",
+          "title": "Check copy against brand voice",
+          "description": "Paste marketing copy and get a voice-and-casing rewrite.",
+          "prompt": "I'll paste some copy. Rewrite it in 3iQ institutional voice — lead with the fact, number + unit, sentence case, no hype, no emojis. Use the 3iq-brand skill for the rules."
+        }
+      ]
+    },
+    "sessions": [
+      {
+        "id": "welcome-to-openwork",
+        "title": "Welcome — 3iQ design system",
+        "openOnFirstLoad": true,
+        "messages": [
+          {
+            "role": "assistant",
+            "text": "Welcome to the 3iQ design-system workspace.\n\nThis is where the system itself lives — tokens, components, brand docs, and the engineering behind them. Marketing deliverables (decks, one-pagers, fund fact sheets) usually live in a sibling marketing workspace that consumes these tokens.\n\nThe 3iq-brand skill is the authority for anything that needs to look or sound like 3iQ — palette, typography, gradients, voice. It's already installed globally and will trigger automatically when relevant.\n\nWhat do you want to work on?"
+          }
+        ]
+      },
+      {
+        "id": "brand-tour",
+        "title": "3iQ brand tour",
+        "messages": [
+          {
+            "role": "assistant",
+            "text": "Happy to walk through the 3iQ brand — palette, typography, the three hero gradients (Forge / Growth / Warmth), and the voice rules that keep copy institutional. Want the full tour, or should I focus on one of those?"
+          },
+          {
+            "role": "user",
+            "text": "Give me the full tour, then show me a four-part block as a worked example."
+          }
+        ]
+      }
+    ],
+    "materialized": {
+      "sessions": {
+        "hydratedAt": 1776737858008,
+        "items": [
+          {
+            "templateId": "welcome-to-openwork",
+            "sessionId": "ses_2522bce40ffe6eCoUnCTYFTtZS"
+          },
+          {
+            "templateId": "brand-tour",
+            "sessionId": "ses_2522bce2bffe5akK7lVSrcxEVJ"
+          }
+        ]
+      }
+    }
+  },
+  "reload": null
+}
