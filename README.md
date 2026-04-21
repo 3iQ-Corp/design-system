@@ -32,6 +32,7 @@ Start here:
 | `tokens/tokens.yaml` | Human-readable source of truth for all tokens |
 | `tokens/tokens.json` | Machine-readable mirror (for Python, python-pptx, Jinja) |
 | `tokens/tokens.css` | CSS custom properties — `var(--bg)`, `var(--text)`, `var(--gradient-forge)` |
+| `reference/logo.md` | Canonical wordmark rules — always use the file, never improvise |
 | `reference/gradients.md` | When to use Forge vs Growth vs Warmth |
 | `reference/typography/` | Live HTML specimens (dark, light, editorial, numbered-grid, feature-cards, forge-hero) |
 | `fonts/` | Real licensed `.woff2` (Denton-Light + Neue Haas Grotesk Display 300/400/500) + variable-font placeholders |
@@ -196,9 +197,29 @@ For cards on light backgrounds: four light top-to-bottom fades — `card_sand`, 
 
 ---
 
+## Logo
+
+The 3iQ wordmark is a single canonical asset. **Always use the file. Never improvise, redraw, retype, or substitute a text rendering.** Full rules and embed patterns (raw SVG, `<img>`, JSX, python-pptx) live in [`reference/logo.md`](reference/logo.md).
+
+- **Canonical file:** [`assets/logos/3iq_logo.svg`](assets/logos/3iq_logo.svg) — `viewBox 0 0 96 30`, `fill="currentColor"`.
+- **JSX component:** `ui_kits/website/Icons.jsx` → `Logo`. Used by `Nav.jsx` (width 80) and `Footer.jsx` (width 96).
+- **Color:** inherits from CSS `color`. Set `color: #FDFCFA` on dark surfaces, `color: #080E23` on light. Never fill child paths, never recolor to an accent.
+- **Minimum width:** 80px. Set `width` only; the viewBox drives height.
+- **Clearspace:** height of the uppercase "Q" on all four sides.
+- **Placement:** top-left of marketing pages and slides; footer-left/center on long-form.
+
+### Never
+- Retype "3iQ" in Denton or any other font and present it as the logo. It's a specific piece of custom artwork, not a typeset string.
+- Redraw from memory, trace, or generate a new SVG version.
+- Apply filters, shadows, outlines, rotations, stretches, or mirrors.
+- Build a lockup (tagline, "since 2012", etc.) — no lockup asset exists in this repo.
+- Use the favicon PNG (`assets/3iq_favicon.png`) or webclip PNG (`assets/3iq_webclip.png`) as a wordmark substitute. Application icons only.
+
+---
+
 ## Iconography
 
-The brand has **no proprietary icon set** yet. 3iQ's AGENTS.md explicitly declares icons out-of-scope — the Forge-hero specimen uses **dot-and-line constellation-style motifs** as stand-ins, not final brand icons.
+The brand has **no proprietary icon set** yet. 3iQ's AGENTS.md explicitly declares icons out-of-scope — the Forge-hero specimen uses **dot-and-line constellation-style motifs** as stand-ins, not final brand icons. The 3iQ wordmark is covered above and is not part of the icon system.
 
 ### Our approach
 - **No emoji** anywhere. Not in marketing, UI, or even internal docs.
@@ -214,16 +235,14 @@ Until an owned set exists, we use **Lucide** via CDN (`https://unpkg.com/lucide@
 <i data-lucide="arrow-up-right"></i>
 ```
 
-### In-repo icons
-- `assets/logos/3iq_logo.svg` — primary wordmark, `currentColor` fill.
-- `assets/3iq_favicon.png`, `assets/3iq_webclip.png` — application icons.
+### Application icons
+- `assets/3iq_favicon.png` — browser tab favicon.
+- `assets/3iq_webclip.png` — iOS home-screen icon.
 
 ### Rules
 - **Stroke weight:** `1.5px`. Strokes, not fills.
 - **Size:** `16px` / `20px` / `24px` / `80px` (hero feature motifs). Always a rem grid multiple.
 - **Color:** inherits from text (`currentColor`). Single accent element allowed in the accent colour (`var(--accent)`).
-- **Clearspace for logo:** height of the "Q". Minimum logo width `80px`.
-- **Never recolor the logo.** Use it on dark or light by setting CSS `color`, never by filling child paths.
 
 ---
 
