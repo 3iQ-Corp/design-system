@@ -1,42 +1,98 @@
 ---
-name: 3iQ brand
-description: Design, write, and render artifacts on brand for 3iQ Corp — institutional digital-asset manager. Use this skill when making slides, web pages, product UI, one-pagers, or anything else that needs the 3iQ look, voice, or tokens.
+name: 3iq-brand
+description: Design, write, and render artifacts on brand for 3iQ Corp — an institutional digital-asset manager (ETFs, CEFs, multi-crypto funds). Use this skill whenever the user asks for anything that should look or sound like 3iQ — marketing pages, product/fund pages, investor decks, one-pagers, press releases, social posts, email, blog posts, ad creative, slides, or UI mockups. Trigger on mentions of "3iQ", "3iq.io", Forge/Growth/Warmth gradients, Denton or Neue Haas fonts, or any 3iQ fund (Bitcoin ETF, ETH Staking ETF, Solana Staking ETF, QMAP, etc.). Also trigger whenever the user is writing copy or building a visual artifact for a digital-asset manager and context suggests 3iQ — even if they don't say the name explicitly.
 ---
 
 # 3iQ brand skill
 
-3iQ Corp is a Toronto-based institutional digital-asset manager (founded 2012, part of Monex/Coincheck Group). Tagline: **"Forging new paths in alternative investing."**
+3iQ Corp is a Toronto-based institutional digital-asset manager (founded 2012, now part of Monex/Coincheck Group). The brand promise is **"Forging new paths in alternative investing."**
 
-The brand is confident, precise, institutional. Digital assets are treated as a legitimate asset class — no crypto-native slang, no hype, no emojis in marketing copy.
+Tone: confident, precise, institutional. Digital assets are a legitimate asset class for traditional allocators — no crypto-native slang, no hype, no emojis in marketing copy. Lead with the fact, let it stand.
 
-## Do this first
+This skill wraps the canonical 3iQ design system repo. The paths referenced below are real files in the same repo as this file; read them before producing anything.
 
-Before designing anything, read the files you'll need in this order:
+## Read order (do this first)
 
-1. **`README.md`** — brand overview, full content/visual/iconography fundamentals, and the index of every other file. This is the source of truth; internalize it before you start.
-2. **`reference/gradients.md`** — when to use Forge (default, sophisticated) vs Growth (thematic for green-forward products) vs Warmth (CTAs, founders, heritage).
-3. **`colors_and_type.css`** — drop-in semantic classes (`.h1`, `.p`, `.eyebrow`) and CSS variables (`--fg1`, `--bg1`, `--accent-yellow`, `--gradient-forge`). Link this in `<head>` and most of the typography + color work is done for you.
-4. **`ui_kits/website/`** — the only ready-made component source. If you're making something site-shaped (marketing page, product page, investor page), read these JSX files and reuse/adapt. Don't hand-roll nav/hero/footer from scratch.
+1. **`README.md`** — full brand overview: content fundamentals (voice, tone, casing, firsts, do/don't), visual foundations (palette, gradients, typography, spacing, cards, buttons, animation), iconography rules. Source of truth — defer to it if anything below conflicts.
+2. **`reference/gradients.md`** — when to pick Forge (default/corporate/ETF) vs Growth (CEFs, yield) vs Warmth (multi-crypto, thematic). Short; read every time.
+3. **`colors_and_type.css`** — drop-in semantic stylesheet. Classes: `.display .h1 .h2 .h3 .h4 .h5 .h6 .p .p-large .p-small .caption .eyebrow .ticker .rule-accent .hairline-rule`. Variables: `--fg1 --fg2 --bg1 --bg2 --bg-hero --hairline --accent-yellow --accent-green --accent-orange --serif-display --sans`. Link this in `<head>` and most typography + color is done for you.
+4. **`tokens/tokens.css`** — raw CSS custom properties (swatches, scale, spacing, radii, gradients). `colors_and_type.css` re-exports from here; look here when you need primitives directly.
+5. **`tokens/tokens.json`** / **`tokens/tokens.yaml`** — same tokens in machine-readable form. Use these when injecting values into python-pptx, Jinja, or any non-CSS context. `disclaimer.standard` and `disclaimer.footer` live in `tokens.yaml`.
 
-`tokens/tokens.{css,json,yaml}` are the raw values `colors_and_type.css` re-exports. Read the JSON/YAML if you need to inject tokens into non-CSS contexts (python-pptx, Jinja, etc.).
+For components (nav, hero, feature grid, footer, CTA), read `ui_kits/website/*.jsx` — these are ready-made and correctly styled. Adapt, don't hand-roll, when building site-shaped artifacts.
 
 ## Non-negotiables
 
-- **Fonts.** Denton Light (300) for display/serif headlines. Neue Haas Grotesk Display (500 default, 600 for emphasis, 700 for strong titles) for everything else. Real `.woff2` files are in `fonts/`. Never substitute Inter, Roboto, Fraunces, or system serifs.
-- **Default body weight is 500**, not 400. Neue Haas Grotesk looks under-weight at 400 on our palette.
-- **Colors.** Primary palette is sand `#D6D5BF`, sky `#C9D7D7`, cream `#EAE9DD`, sage `#B8C6C6`, on a near-black `#080E23` or paper `#FDFCFA`. Accent yellow `#EDC576` is the *only* high-chroma color that appears regularly — use it for rules, ticker highlights, link underlines, and the Forge-gradient CTA button. Green `#B5C97A` and orange `#EE9B6C` are reserved for thematic use (Growth, Warmth).
-- **Gradients.** Hero sections and section starters should use one of the three gradients (Forge default). Plain flat dark/light is acceptable but gradients are the brand signature.
-- **Iconography.** Lucide style, 1.5px stroke, square caps, `currentColor`. Drawn inline as SVG. See `ui_kits/website/Icons.jsx` for the canonical set (`ArrowUpRight`, `Check`, `Caret`, `Logo`). If you need an icon that isn't there, draw it in the same style.
-- **Voice.** Clear, calm, institutional. Short sentences. No emojis. No "game-changing," "revolutionary," "crypto bros," "to the moon." Use "digital assets," not "crypto." Use "institutional investors" or "allocators," not "users." See README > CONTENT FUNDAMENTALS for worked examples.
+Check each before shipping — these are the things most easily gotten wrong.
+
+### Fonts
+
+- **Headlines (display, h1–h5):** Denton Light (300), serif. Tight leading, `0.01em` tracking, sentence case.
+- **Everything else (h6, body, UI, buttons, eyebrows, tickers):** Neue Haas Grotesk Display, sans.
+- **Body default weight is 500 (Medium), not 400.** Neue Haas looks under-weight at 400 on this palette.
+- The site loads Light (300), Roman (400), and Medium (500) only. The Medium face is mapped to weights 500–700 so "semibold" feature titles still render; letterforms at 600+ look a touch lighter than a true Semibold cut.
+- Real licensed `.woff2` files live in `fonts/`. Never substitute Inter, Roboto, Fraunces, or a system serif — the brand reads wrong without them. For email/print fallbacks the `tokens.yaml` spec is authoritative (`Palatino Linotype`/`Georgia` for serif; `Arial`/`Helvetica` for sans).
+
+### Color
+
+- Primary palette is muted warm neutrals: sand `#D6D5BF`, sky `#C9D7D7`, cream `#EAE9DD`, sage `#B8C6C6`. These are the identity.
+- They sit on near-black `#080E23` (dark) or warm paper `#FDFCFA` (light).
+- **Accent yellow `#EDC576`** is the only high-chroma color that appears regularly — rules, eyebrows, link underlines, ticker badges, Forge-gradient CTAs.
+- Green `#4C9478` and orange `#E6704E` are **thematic accents**, not general-purpose. Reserve green for CEF/Growth surfaces, orange for multi-crypto/Warmth surfaces.
+- The brand is **not** "navy + gold + green". If the output reads that way, step back and re-check against the palette.
+
+### Gradients
+
+- Hero sections and section starters default to a gradient, not flat color. Gradients are the brand's signature texture.
+- Three hero gradients, one per product family:
+  - **Forge** `linear-gradient(180deg, #080E23, #4C3D32)` — navy → warm brown. Yellow accent. ETF, corporate, default.
+  - **Growth** `linear-gradient(180deg, #1E3239, #02393C)` — slate → teal. Green accent. CEF, yield.
+  - **Warmth** `linear-gradient(180deg, #1C0E1D, #3A1717)` — plum → oxblood. Orange accent. Multi-crypto, thematic.
+- Apply via `data-fund-theme="etf|cef|multi-crypto"` on a wrapper — the CSS swaps gradient + accent + rule color in one step.
+- Never mix two hero gradients on the same surface. Never use a hero gradient as a card fill; use the `card_sand/sky/cream/sage` light tints for that.
+
+### Voice
+
+- Clear, calm, institutional. Short sentences.
+- **Lead with the fact.** *"2020: North America's first major exchange-listed Bitcoin and Ether Funds."* Not *"We're proud to have…"*.
+- Use **"digital assets"**, not "crypto", in institutional contexts. ("Crypto" is OK in casual body copy or product-feature lists — *multi-crypto fund* — never in headlines.)
+- Number + unit, every time: `USD 200M`, `4.25% yield`, `listed on Nasdaq Dubai`, `regulated in Canada by the OSC`.
+- Cite firsts — they're the central marketing asset. See `README.md` §Cite firsts for the canonical list.
+- **Never:** emojis, crypto-slang (HODL, moon, ape, WAGMI), exclamation marks, hype adjectives (revolutionary, game-changing, insane, epic), all-caps headlines, "we're excited to announce" openers.
+
+### Casing
+
+- **Headlines:** sentence case.
+- **Eyebrows, UI labels, ticker badges:** UPPERCASE, `0.04em` tracking.
+- **Body, buttons:** sentence case.
+- **Product names:** Title Case (*3iQ Bitcoin ETF*, *3iQ Solana Staking ETF*).
+
+### Iconography
+
+- No emojis. No unicode glyphs as icons (no `✓ → ↗` standing alone). SVG only.
+- 1.5px stroke, square caps, `currentColor` for fills/strokes so icons inherit from CSS `color`.
+- Optional single-element yellow accent inside an icon — never more than one.
+- Default icon set is **Lucide** (`https://unpkg.com/lucide@latest`) — matches the brand's geometric feel. Flag to the client that it's a substitution until 3iQ commissions an owned set.
+- In-repo: `assets/logos/3iq_logo.svg` (primary wordmark, `currentColor` fill — never recolor child paths; set CSS `color` instead). Minimum logo width 80px; clearspace equals the height of the "Q".
 
 ## Composition patterns
 
-- **Section rhythm.** Alternate dark (Forge gradient or flat `#080E23`) and light (cream gradient or flat `#FDFCFA`) sections. Avoid two dark or two light sections in a row.
-- **Eyebrow · rule · headline · lede.** The recurring four-part block. Eyebrow is uppercase `Neue Haas 600 14px tracking 0.04em` in accent yellow on dark, or in `--fg1` opacity 0.7 on light. The rule is a 2px · 4rem bar — yellow on dark, dark on light. Headline is Denton 300 at `clamp(3rem, 6vw, 5.5rem)` line-height 1. Lede is Neue Haas 500 at 17–18px line-height 1.5 with `max-width: 38–52ch`.
-- **Cards.** `#FDFCFA` background, `border-radius: 16px`, padding `40px 36px`, soft 1px hairline shadow. Never use heavy drop-shadows.
-- **Buttons.** Rounded pills (radius-round). Primary-dark = Forge-gradient fill with dark text. Primary-light = flat sand with dark text. Always include a trailing `ArrowUpRight` icon. Hover = opacity 0.75 with `cubic-bezier(.2,.8,.2,1)` 250ms.
-- **Numbered grids.** Firsts / milestones / steps → Denton 300 40px numeral, 2×32 yellow rule under it, then eyebrow + title + body. Five-up across; see `CTA.jsx` in the website kit.
+Prefer these recurring blocks over inventing new ones.
+
+- **Section rhythm.** Alternate dark (Forge gradient or flat `#080E23`) and light (cream gradient or flat `#FDFCFA`) sections. Two dark in a row is monotonous; two light in a row reads like a doc, not marketing.
+- **Eyebrow · rule · headline · lede** is the core repeating unit: UPPERCASE eyebrow (accent yellow on dark, `--fg1` @ 0.7 on light) → 2px × 4rem `--rule` bar → Denton 300 display headline at `clamp(3rem, 6vw, 5.5rem)` line-height 1, sentence case → Neue Haas 500 lede at 17–18px line-height 1.5, `max-width 38–52ch` → optional content grid → optional right-aligned CTA.
+- **Cards.** Fill `#FDFCFA` (on dark sections) or one of the `card_sand/sky/cream/sage` gradients (on light sections). `border-radius: 1rem`, padding `2–2.5rem`, almost no shadow (`0 1px 0 rgba(8, 14, 35, 0.04)`), hairline `rgb(8 14 35 / 0.12)` between rows. Never pill-shaped cards.
+- **Buttons.** Fully-rounded pill (`border-radius: 100vw`). Primary on dark = `--gradient-button-dark` fill (`linear-gradient(to right, #FDFCFA 15%, #D6D5BF 100%)`), `#080E23` text. Primary on light = solid sand `#D6D5BF` fill, `#080E23` text. Secondary = transparent, 1px `currentColor` border. Always trailing `↗` ArrowUpRight SVG — never a chevron, plain right-arrow, or unicode glyph. Hover opacity → 0.75; press → 0.60; no scale transforms.
+- **Numbered grids.** Firsts / milestones / 5-step processes → 5-up grid. Each cell: Denton 300 40px numeral (`01`, `02`…), 2×32 yellow rule under it, then eyebrow + title + body. See `ui_kits/website/CTA.jsx`.
+- **Hero headlines.** Wrap at meaningful phrase endings with `max-width: 14ch` and careful line breaks. Long unbroken hero lines break the elegance.
+- **Animation.** Easing `cubic-bezier(0.2, 0.8, 0.2, 1)`. 200–400ms for UI, 600–900ms for hero fades on first view. Fades over scale. Parallax OK in hero; bounce is off-brand. No page-load stagger on marketing body copy.
+
+## Disclaimers
+
+Marketing output should include the standard disclaimer. The canonical text is in `tokens/tokens.yaml` under `disclaimer.standard` and `disclaimer.footer` — use verbatim.
 
 ## When in doubt
 
-The design system tab (`preview/` cards) is the visual inventory. Scan it before inventing a new pattern — there's probably already one that fits.
+- Read `README.md` again — it has worked examples of almost everything, including off-brand vs on-brand copy contrasts.
+- The `preview/` cards are a visual inventory of every pattern that already exists. Scan them before inventing something new — odds are something already fits.
+- If you're about to hand-roll a nav, hero, feature grid, footer, or CTA, stop and look at `ui_kits/website/*.jsx` first.
