@@ -1,0 +1,93 @@
+name: Sync Anthropic Skills
+
+on:
+  schedule:
+    # Every Monday at 9:00 AM UTC
+    - cron: "0 9 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout this repo
+        uses: actions/checkout@v4
+
+      - name: Clone Anthropic skills (sparse)
+        run: |
+          git clone --depth 1 --filter=blob:none --sparse \
+            https://github.com/anthropics/skills.git /tmp/anthropic-upstream
+          cd /tmp/anthropic-upstream
+          git sparse-checkout set skills
+
+      - name: Check for updates
+        id: diff
+        run: |
+          SKILLS=$(jq -r '.skills[]' anthropic-skills.json)
+          CHANGED=""
+
+          for skill in $SKILLS; do
+            UPSTREAM="/tmp/anthropic-upstream/skills/$skill"
+            LOCAL="anthropic/$skill"
+
+            if [ ! -d "$UPSTREAM" ]; then
+              echo "WARNING: Skill '$skill' not found upstream, skipping."
+              continue
+            fi
+
+            if [ ! -d "$LOCAL" ]; then
+              echo "NEW: $skill (not yet in repo)"
+              CHANGED="$CHANGED $skill"
+              continue
+            fi
+
+            if ! diff -rq "$UPSTREAM" "$LOCAL" > /dev/null 2>&1; then
+              echo "UPDATED: $skill"
+              CHANGED="$CHANGED $skill"
+            else
+              echo "OK: $skill (no changes)"
+            fi
+          done
+
+          CHANGED=$(echo "$CHANGED" | xargs)
+          echo "changed=$CHANGED" >> "$GITHUB_OUTPUT"
+
+          if [ -z "$CHANGED" ]; then
+            echo "All Anthropic skills are up to date."
+          else
+            echo "Skills with updates: $CHANGED"
+          fi
+
+      - name: Apply updates
+        if: steps.diff.outputs.changed != ''
+        run: |
+          for skill in ${{ steps.diff.outputs.changed }}; do
+            echo "Syncing: $skill"
+            rm -rf "anthropic/$skill"
+            cp -R "/tmp/anthropic-upstream/skills/$skill" "anthropic/$skill"
+          done
+
+      - name: Create Pull Request
+        if: steps.diff.outputs.changed != ''
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore: sync Anthropic skills (${{ steps.diff.outputs.changed }})"
+          branch: auto/sync-anthropic-skills
+          delete-branch: true
+          title: "Sync Anthropic Skills Update"
+          body: |
+            Automated sync detected updates to the following Anthropic skills:
+
+            **Updated skills:** `${{ steps.diff.outputs.changed }}`
+
+            Source: [`anthropics/skills@main`](https://github.com/anthropics/skills)
+
+            Please review the changes before merging.
+          labels: |
+            automated
+            skills-sync

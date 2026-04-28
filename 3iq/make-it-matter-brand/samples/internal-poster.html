@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>#MakeItMatter — Employee Values Poster</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    @page { size: 297mm 420mm; margin: 0; }
+
+    html, body {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #FDFEFA;
+      color: #080E23;
+    }
+
+    .poster {
+      width: 297mm;
+      min-height: 420mm;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .serif {
+      font-family: 'Palatino Linotype', 'Palatino', 'Book Antiqua', Georgia, serif;
+      font-weight: 300;
+      letter-spacing: 0.01em;
+    }
+
+    /* ── Top bar ───────────────────────────────────────── */
+    .top-bar {
+      background: #080E23;
+      padding: 5mm 10mm;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .top-bar .logo-3iq { height: 7mm; color: #FDFEFA; display: block; }
+    .top-bar .campaign-tag {
+      font-weight: 600;
+      font-size: 2.8mm;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #EDC577;
+    }
+
+    /* ── Hero: light cream/golden background ────────────── */
+    .hero {
+      background: linear-gradient(180deg, #EAE9DD 0%, #FDFEFA 100%);
+      padding: 16mm 14mm 14mm 14mm;
+      flex-shrink: 0;
+    }
+    .hero-eyebrow {
+      font-weight: 600;
+      font-size: 3mm;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #4C9478;
+      margin-bottom: 4mm;
+    }
+
+    .hero-line {
+      font-size: 13mm;
+      line-height: 1.28;
+      color: #080E23;
+      margin-bottom: 3mm;
+    }
+    .hero-line:last-child { margin-bottom: 0; }
+
+    /* Highlight container: positions the PNG behind the word */
+    .hl {
+      position: relative;
+      display: inline-block;
+    }
+    .hl img {
+      position: absolute;
+      left: -10%;
+      bottom: -15%;
+      width: 120%;
+      height: auto;
+      pointer-events: none;
+      user-select: none;
+    }
+    .hl span {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── Values section ────────────────────────────────── */
+    .values-section {
+      background: #FDFEFA;
+      padding: 10mm 14mm;
+      flex: 1;
+    }
+    .values-header {
+      margin-bottom: 6mm;
+    }
+    .values-header .eyebrow {
+      font-weight: 600;
+      font-size: 3mm;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #EDC577;
+      margin-bottom: 2mm;
+    }
+    .values-header .title {
+      font-size: 7mm;
+      line-height: 1.15;
+      color: #080E23;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5mm;
+    }
+
+    .value-card {
+      border: 1px solid rgba(8, 14, 35, 0.08);
+      border-radius: 4mm;
+      padding: 5mm;
+      display: flex;
+      flex-direction: column;
+      gap: 2mm;
+    }
+    .value-card-top {
+      display: flex;
+      align-items: baseline;
+      gap: 3mm;
+    }
+    .value-num {
+      font-size: 7mm;
+      line-height: 1;
+      color: rgba(8, 14, 35, 0.15);
+    }
+    .value-name {
+      font-weight: 600;
+      font-size: 4mm;
+      color: #080E23;
+      line-height: 1.2;
+    }
+    .value-accent {
+      width: 12mm;
+      height: 2px;
+      border: none;
+      border-radius: 100vw;
+    }
+
+    .value-text {
+      font-weight: 500;
+      font-size: 3.2mm;
+      line-height: 1.55;
+      color: #4C3D32;
+    }
+
+    /* Smaller highlight for value cards */
+    .hl-sm {
+      position: relative;
+      display: inline-block;
+    }
+    .hl-sm img {
+      position: absolute;
+      left: -10%;
+      bottom: -20%;
+      width: 125%;
+      height: auto;
+      pointer-events: none;
+      user-select: none;
+    }
+    .hl-sm span {
+      position: relative;
+      z-index: 1;
+      font-weight: 600;
+    }
+
+    /* ── Bottom strip ──────────────────────────────────── */
+    .bottom-strip {
+      background: #080E23;
+      padding: 8mm 14mm;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+    .bottom-tagline {
+      font-size: 4mm;
+      font-style: italic;
+      line-height: 1.4;
+      color: rgba(253, 254, 250, 0.65);
+      max-width: 110mm;
+    }
+    .bottom-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 2mm;
+    }
+    .mim-logo { width: 50mm; height: auto; display: block; }
+    .bottom-url {
+      font-size: 2.5mm;
+      font-weight: 500;
+      color: #EDC577;
+      opacity: 0.5;
+    }
+
+    /* ── Debug: if images still fail, show a red border ── */
+    .hl img[src]::after,
+    .hl-sm img[src]::after {
+      content: 'IMG';
+      color: red;
+    }
+
+    @media print {
+      .poster { width: 297mm; min-height: 420mm; }
+    }
+  </style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- ═══ TOP BAR ═══ -->
+  <header class="top-bar">
+    <svg class="logo-3iq" viewBox="0 0 96 30" fill="currentColor" aria-label="3iQ">
+      <path d="M.75 0A.75.75 0 0 0 0 .75v28.5a.75.75 0 0 0 .75.75h28.5a.75.75 0 0 0 .75-.75V.75a.75.75 0 0 0-.75-.75H.75ZM6.6 6.78h11.52V9.3H6.6V6.78Zm16.8 6.96v2.52H11.88v-2.52H23.4ZM8.04 13.2c1.026 0 1.8.774 1.8 1.8s-.774 1.8-1.8 1.8-1.8-.774-1.8-1.8.774-1.8 1.8-1.8Zm10.08 10.02H6.6V20.7h11.52v2.52Zm3.84.54c-1.026 0-1.8-.774-1.8-1.8s.774-1.8 1.8-1.8 1.8.774 1.8 1.8-.774 1.8-1.8 1.8Zm0-13.92c-1.026 0-1.8-.774-1.8-1.8s.774-1.8 1.8-1.8 1.8.774 1.8 1.8-.774 1.8-1.8 1.8Zm30.797 4.602c2.16-.992 3.332-2.995 3.332-5.75 0-4.302-3.631-7.192-9.036-7.192-5.405 0-8.998 3.305-9.037 8.037l-.003.372h3.797l.003-.363c.034-2.716 2.154-4.54 5.275-4.54 3.12 0 5.09 1.556 5.09 3.872 0 2.61-2.014 4.168-5.386 4.168h-2.397v3.43h2.582c3.672 0 5.864 1.516 5.864 4.057 0 2.541-2.29 4.463-5.569 4.463-3.596 0-5.942-1.984-5.975-5.056l-.003-.366H37.5v.37c0 5.277 3.673 8.556 9.59 8.556 5.915 0 9.663-3.113 9.663-7.745 0-3.543-1.905-5.51-3.996-6.311v-.002Zm11.483-3.869h-3.762v17.704h3.762V10.573Zm-1.881-8.704c-1.577 0-2.766 1.19-2.766 2.766 0 1.577 1.19 2.766 2.766 2.766 1.577 0 2.766-1.19 2.766-2.766 0-1.577-1.19-2.766-2.766-2.766Z"/>
+      <path d="M62.359 1.869c-1.577 0-2.766 1.19-2.766 2.766 0 1.577 1.19 2.766 2.766 2.766 1.577 0 2.766-1.19 2.766-2.766 0-1.577-1.19-2.766-2.766-2.766ZM89.88 5.334C87.58 2.861 84.33 1.5 80.728 1.5c-3.602 0-6.853 1.361-9.154 3.834-2.28 2.447-3.534 5.88-3.534 9.665 0 3.784 1.254 7.218 3.534 9.665 2.3 2.471 5.552 3.834 9.154 3.834 3.602 0 6.852-1.36 9.154-3.834 2.28-2.447 3.533-5.88 3.533-9.665 0-3.784-1.254-7.218-3.533-9.665ZM80.728 24.81c-5.103 0-8.668-4.035-8.668-9.81 0-5.777 3.565-9.812 8.668-9.812 5.102 0 8.667 4.035 8.667 9.811s-3.565 9.81-8.667 9.81Z"/>
+      <path d="M94.974 28.24h-3.842a4.125 4.125 0 0 1-3.316-1.672l-3.656-4.944a1.875 1.875 0 0 0-1.508-.76h-3.025v-3.689h3.75c1.308 0 2.538.62 3.316 1.672l3.656 4.944a4.125 4.125 0 0 0 3.316 1.672h.309v3.689Z"/>
+    </svg>
+    <span class="campaign-tag">#MakeItMatter</span>
+  </header>
+
+  <!-- ═══ HERO: NARRATIVE LINES ON LIGHT CREAM ═══ -->
+  <section class="hero">
+    <p class="hero-eyebrow">#MakeItMatter</p>
+
+    <p class="hero-line serif">That what you do here
+      <span class="hl"><img src="../assets/highlights/3iQ-Highlight-1-Gold.png" alt=""><span>matters.</span></span>
+    </p>
+
+    <p class="hero-line serif">How you work
+      <span class="hl"><img src="../assets/highlights/3iQ-Highlight-2-Orange.png" alt=""><span>matters.</span></span>
+    </p>
+
+    <p class="hero-line serif">How you treat others
+      <span class="hl"><img src="../assets/highlights/3iQ-Highlight-3-Green.png" alt=""><span>matters.</span></span>
+    </p>
+
+    <p class="hero-line serif">And the difference we make together,<br>really
+      <span class="hl">
+        <img src="../assets/highlights/3iQ-Highlight-12-Orange.png" alt=""
+             style="left: -30%; top: -60%; width: 165%; bottom: auto;">
+        <span>matters.</span>
+      </span>
+    </p>
+  </section>
+
+  <!-- ═══ VALUES: 2x3 GRID ═══ -->
+  <section class="values-section">
+    <div class="values-header">
+      <p class="eyebrow">Why it matters</p>
+      <p class="title serif">Six values. One shared purpose.</p>
+    </div>
+
+    <div class="values-grid">
+
+      <!-- 01 -->
+      <div class="value-card">
+        <div class="value-card-top">
+          <span class="value-num serif">01</span>
+          <span class="value-name">Lead with Kyodo</span>
+        </div>
+        <hr class="value-accent" style="background: #EDC577;">
+        <p class="value-text">We before me, always. Collaboration
+          <span class="hl-sm"><img src="../assets/highlights/3iQ-Highlight-9-Gold.png" alt=""><span>matters</span></span>
+          because no one builds anything lasting alone.
+        </p>
+      </div>
+
+      <!-- 02 -->
+      <div class="value-card">
+        <div class="value-card-top">
+          <span class="value-num serif">02</span>
+          <span class="value-name">Stay Humble</span>
+        </div>
+        <hr class="value-accent" style="background: #2EA1AE;">
+        <p class="value-text">Curiosity, learning, and listening make our work
+          <span class="hl-sm"><img src="../assets/highlights/3iQ-Highlight-5-Blue.png" alt=""><span>matter.</span></span>
+        </p>
+      </div>
+
+      <!-- 03 -->
+      <div class="value-card">
+        <div class="value-card-top">
+          <span class="value-num serif">03</span>
+          <span class="value-name">Elevate Others</span>
+        </div>
+        <hr class="value-accent" style="background: #4C9478;">
+        <p class="value-text">Recognition and empowerment show others
+          <span class="hl-sm"><img src="../assets/highlights/3iQ-Highlight-7-Green.png" alt=""><span>matter.</span></span>
+          We celebrate those who raise others higher.
+        </p>
+      </div>
+
+      <!-- 04 -->
+      <div class="value-card">
+        <div class="value-card-top">
+          <span class="value-num serif">04</span>
+          <span class="value-name">Innovate &amp; Adapt</span>
+        </div>
+        <hr class="value-accent" style="background: #9269AE;">
+        <p class="value-text">Our ability to lead
+          <span class="hl-sm"><img src="../assets/highlights/3iQ-Highlight-8-Mauve.png" alt=""><span>matters.</span></span>
+          We don't wait for the future, we build it.
+        </p>
+      </div>
+
+      <!-- 05 -->
+      <div class="value-card">
+        <div class="value-card-top">
+          <span class="value-num serif">05</span>
+          <span class="value-name">Offer Radical Candour</span>
+        </div>
+        <hr class="value-accent" style="background: #E6704E;">
+        <p class="value-text">Honest feedback makes growth
+          <span class="hl-sm"><img src="../assets/highlights/3iQ-Highlight-6-Orange.png" alt=""><span>matter.</span></span>
+          We speak with care, but always the truth.
+        </p>
+      </div>
+
+      <!-- 06 -->
+      <div class="value-card">
+        <div class="value-card-top">
+          <span class="value-num serif">06</span>
+          <span class="value-name">Follow Through</span>
+        </div>
+        <hr class="value-accent" style="background: #B8C6C4;">
+        <p class="value-text">Delivering on promises proves it
+          <span class="hl-sm"><img src="../assets/highlights/3iQ-Highlight-11-Gold.png" alt=""><span>matters.</span></span>
+          It's how we build it together.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ BOTTOM STRIP ═══ -->
+  <footer class="bottom-strip">
+    <p class="bottom-tagline serif">If you're driven by purpose,<br>you're already one of us.</p>
+    <div class="bottom-right">
+      <img class="mim-logo" src="../assets/logos/3iQ-MakeItMatter-Logo-White.svg" alt="#MakeItMatter"
+           onerror="this.onerror=null;this.src='../assets/logos/3iQ-MakeItMatter-Logo-White.png';">
+      <span class="bottom-url">3iq.io</span>
+    </div>
+  </footer>
+
+</div>
+
+<!-- Diagnostic: If highlights still don't show, uncomment below to test a single image loads -->
+<!--
+<div style="padding:20px; background:#eee;">
+  <p>Test image (should show a gold brush stroke):</p>
+  <img src="../assets/highlights/3iQ-Highlight-1-Gold.png" style="width:300px; border:2px solid red;">
+</div>
+-->
+
+</body>
+</html>

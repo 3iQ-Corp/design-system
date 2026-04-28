@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>#MakeItMatter editorial hero — light</title>
+  <link rel="stylesheet" href="../../tokens/tokens.css" />
+  <link rel="stylesheet" href="_layouts.css" />
+  <style>
+    .editorial {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: var(--sp-10);
+      padding-top: var(--sp-6);
+    }
+    .editorial .lead h1 {
+      font-family: var(--font-heading);
+      font-weight: var(--fw-light);
+      font-size: clamp(3.5rem, 6.5vw, 6.5rem);
+      line-height: 1em;
+      letter-spacing: var(--ls-heading);
+      margin: 0;
+      max-width: 14ch;
+    }
+    .editorial .detail {
+      padding-top: var(--sp-4);
+      display: grid;
+      gap: var(--sp-5);
+    }
+    .editorial .detail .sub {
+      padding-top: var(--sp-2);
+      border-top: var(--border-width-main) solid var(--border-muted);
+    }
+    .editorial .detail .sub h2 {
+      font-family: var(--font-heading);
+      font-weight: var(--fw-light);
+      font-size: clamp(2rem, 2.8vw, 2.75rem);
+      line-height: 1.1em;
+      letter-spacing: var(--ls-heading);
+      margin: 0;
+      max-width: 20ch;
+    }
+    .editorial .body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-3);
+      font-family: var(--font-body);
+      font-weight: var(--fw-medium);
+      font-size: var(--fs-text-main);
+      line-height: var(--lh-relaxed);
+      color: var(--swatch-dark);
+    }
+    .editorial .body p { margin: 0 0 var(--sp-2) 0; }
+  </style>
+</head>
+<body data-theme="light">
+  <div class="spec-header">
+    <span>Editorial hero · light</span>
+    <a href="./index.html">Back to specimens</a>
+  </div>
+  <section class="bleed gradient-golden">
+    <div class="container editorial">
+      <div class="lead">
+        <h1>What you do here matters</h1>
+      </div>
+      <div class="detail">
+        <div class="sub">
+          <h2>And the difference we make together, really matters</h2>
+        </div>
+        <div class="body">
+          <div>
+            <p>#MakeItMatter is a constant reminder that what you do at 3iQ matters. How you work matters. How you treat others matters.</p>
+            <p>It is a simple, powerful campaignable statement presented in a stylised way to communicate what motivates 3iQ.</p>
+          </div>
+          <div>
+            <p>It complements and reinforces the 3iQ corporate brand — it does not replace it.</p>
+            <p>From talent attraction to cultural engagement to internal communications, #MakeItMatter runs through everything we do.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

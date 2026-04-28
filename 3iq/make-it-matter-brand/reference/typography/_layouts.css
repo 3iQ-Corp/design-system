@@ -1,0 +1,98 @@
+/* Shared layout rules for the composition specimens. */
+
+@import url("./_base.css");
+
+.spec-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--sp-4);
+  padding: var(--sp-3) var(--sp-8);
+  background: var(--swatch-light);
+  color: var(--swatch-dark);
+  border-bottom: var(--border-width-main) solid var(--swatch-dark);
+  font-family: var(--font-body);
+  font-size: var(--fs-text-small);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+}
+.spec-header a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: var(--border-width-main) solid currentColor;
+}
+
+.bleed {
+  padding: var(--sp-8) var(--sp-8);
+  min-height: 100vh;
+}
+.bleed.gradient-sky      { background: var(--gradient-sky); }
+.bleed.gradient-golden   { background: var(--gradient-golden); }
+.bleed.gradient-platinum { background: var(--gradient-platinum); }
+.bleed.gradient-forge    { background: var(--gradient-forge); color: var(--swatch-light); }
+.bleed.gradient-growth   { background: var(--gradient-growth); color: var(--swatch-light); }
+.bleed.gradient-warmth   { background: var(--gradient-warmth); color: var(--swatch-light); }
+
+.container {
+  max-width: 96rem;
+  margin: 0 auto;
+}
+
+.serif {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-light);
+  letter-spacing: var(--ls-heading);
+  line-height: var(--lh-tight);
+}
+.sans {
+  font-family: var(--font-body);
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-text-small);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+  color: var(--accent);
+  margin: 0 0 var(--sp-1) 0;
+}
+
+.lede {
+  font-family: var(--font-body);
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-text-main);
+  line-height: var(--lh-relaxed);
+  max-width: 36ch;
+  color: var(--text);
+  opacity: 0.9;
+  margin: 0;
+}
+
+.rule-thin {
+  border: 0;
+  border-top: var(--border-width-main) solid var(--rule-muted);
+  margin: 0;
+}
+
+.bleed.gradient-forge {
+  --border-muted: rgb(253 254 250 / 0.25);
+  --rule-muted:   rgb(253 254 250 / 0.25);
+  --text-muted:   var(--swatch-brand);
+}
+
+.btn-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  width: 100%;
+  padding: var(--sp-1-5) 0;
+  font-family: var(--font-body);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-text-main);
+  color: inherit;
+  text-decoration: none;
+  border-top: 1px solid currentColor;
+}
+.btn-arrow svg { flex: none; }

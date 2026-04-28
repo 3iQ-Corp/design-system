@@ -1,0 +1,130 @@
+/* #MakeItMatter — semantic CSS layer
+   Re-exports tokens/tokens.css and adds semantic class helpers.
+   Link this in <head> for quick prototyping. */
+@import url("tokens/tokens.css");
+
+/* ─── Font-face declarations ─────────────────────────────────────────── */
+@font-face {
+  font-family: "Denton";
+  src: url("fonts/Denton-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Neue Haas Grotesk Display";
+  src: url("fonts/NeueHaasDisplay-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Neue Haas Grotesk Display";
+  src: url("fonts/NeueHaasDisplay-Roman.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Neue Haas Grotesk Display";
+  src: url("fonts/NeueHaasDisplay-Medium.woff2") format("woff2");
+  font-weight: 500 700;
+  font-display: swap;
+}
+
+/* ─── Semantic color aliases ─────────────────────────────────────────── */
+:root {
+  --fg1: var(--text);
+  --fg2: var(--text-muted);
+  --bg1: var(--bg);
+  --bg2: var(--surface);
+  --bg-hero: var(--bg-gradient);
+  --hairline: var(--rule-muted);
+  --accent-yellow: var(--swatch-yellow);
+  --accent-green:  var(--swatch-green);
+  --accent-orange: var(--swatch-orange);
+  --accent-fuchsia: var(--swatch-fuchsia);
+  --accent-mauve:   var(--swatch-mauve);
+  --accent-blue:    var(--swatch-blue);
+  --serif-display: var(--font-heading);
+  --sans: var(--font-body);
+}
+
+/* ─── Typography classes ─────────────────────────────────────────────── */
+.display {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-light);
+  font-size: var(--fs-display);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-heading);
+}
+.h1 {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-light);
+  font-size: var(--fs-h1);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-heading);
+}
+.h2 {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-light);
+  font-size: var(--fs-h2);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--ls-heading);
+}
+.h3 {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-light);
+  font-size: var(--fs-h3);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--ls-heading);
+}
+.h4 {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-light);
+  font-size: var(--fs-h4);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--ls-heading);
+}
+.h5 {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-light);
+  font-size: var(--fs-h5);
+  line-height: var(--lh-normal);
+  letter-spacing: var(--ls-heading);
+}
+.h6 {
+  font-family: var(--font-body);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-h6);
+  line-height: var(--lh-normal);
+}
+.p { font-size: var(--fs-text-main); line-height: var(--lh-relaxed); }
+.p-large { font-size: var(--fs-text-large); line-height: var(--lh-relaxed); }
+.p-small { font-size: var(--fs-text-small); line-height: var(--lh-relaxed); color: var(--text-muted); }
+.caption { font-size: var(--fs-text-small); color: var(--text-muted); }
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-text-small);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+  color: var(--accent);
+}
+.ticker {
+  font-family: var(--font-body);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-text-small);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wide);
+}
+
+/* ─── Rules ──────────────────────────────────────────────────────────── */
+.rule-accent {
+  height: var(--border-width-large);
+  width: 4rem;
+  background: var(--rule);
+}
+.hairline-rule {
+  height: var(--border-width-main);
+  background: var(--rule-muted);
+}

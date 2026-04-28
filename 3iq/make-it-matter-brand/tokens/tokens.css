@@ -1,0 +1,184 @@
+/* #MakeItMatter design tokens — CSS custom properties.
+   Source: derived from 3iQ-MakeItMatter-Guidelines-v2.pdf (February 2026).
+   Keep in sync with tokens.yaml/json.
+
+   Usage:
+     <link rel="stylesheet" href="path/to/tokens.css">
+   or copy the :root block into an inlined <style> for email.
+
+   Then use values via var(), e.g.:
+     background: var(--bg);
+     color:      var(--text);
+     font-family: var(--font-primary);
+
+   Theme is applied via data-theme="dark" (default) or
+   data-theme="light" on a wrapper. Gradient theme via
+   data-gradient-theme="forge|growth|warmth" to swap gradient + accent. */
+
+:root {
+  /* ─── PRIMITIVE COLOR SWATCHES ─────────────────────────────────────── */
+  --swatch-dark:            #080E23;
+  --swatch-dark-secondary:  #4C3D32;
+  --swatch-light:           #FDFEFA;  /* MIM Off White */
+  --swatch-light-secondary: #F4ECE5;
+  --swatch-light-tertiary:  #F8F7F5;
+  --swatch-neutral:         #EAE7E2;  /* MIM Neutral */
+  --swatch-transparent:     #FFFFFF00;
+
+  --swatch-brand:    #D6D5BF; /* gold  */
+  --swatch-brand-2:  #B8C6C4; /* platinum */
+  --swatch-brand-3:  #EAE7E2; /* neutral  */
+  --swatch-brand-4:  #EDC577; /* yellow   */
+
+  --swatch-green:   #4C9478;
+  --swatch-yellow:  #EDC577;
+  --swatch-orange:  #E6704E;
+
+  /* People & Culture additions (restricted use) */
+  --swatch-fuchsia: #ED5377;
+  --swatch-mauve:   #9269AE;
+  --swatch-blue:    #2EA1AE;
+
+  --swatch-alert-negative: #DA3B3B;
+  --swatch-alert-positive: #4C9478;
+
+  /* ─── TYPOGRAPHY ───────────────────────────────────────────────────── */
+  --font-primary:   "Neue Haas Grotesk Display", Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-secondary: Denton, "Palatino Linotype", Georgia, serif;
+
+  /* Role-to-family alias */
+  --font-heading: var(--font-secondary);
+  --font-body:    var(--font-primary);
+
+  /* Scale (rem) — desktop targets */
+  --fs-display:    7rem;
+  --fs-h1:         5rem;
+  --fs-h2:         4rem;
+  --fs-h3:         3rem;
+  --fs-h4:         2.5rem;
+  --fs-h5:         2rem;
+  --fs-h6:         1.5rem;
+  --fs-text-large: 1.25rem;
+  --fs-text-main:  1rem;
+  --fs-text-small: 0.875rem;
+
+  --fw-light:    300;
+  --fw-regular:  400;
+  --fw-medium:   500;
+  --fw-semibold: 600;
+
+  --lh-tight:   1em;
+  --lh-snug:    1.1em;
+  --lh-normal:  1.25em;
+  --lh-relaxed: 1.5em;
+
+  --ls-normal:  0em;
+  --ls-heading: 0.01em;
+  --ls-wide:    0.04em;
+
+  /* ─── SIZE / SPACING ───────────────────────────────────────────────── */
+  --sp-0:     0rem;
+  --sp-0-125: 0.125rem;
+  --sp-0-25:  0.25rem;
+  --sp-0-5:   0.5rem;
+  --sp-0-75:  0.75rem;
+  --sp-1:     1rem;
+  --sp-1-25:  1.25rem;
+  --sp-1-5:   1.5rem;
+  --sp-2:     2rem;
+  --sp-2-5:   2.5rem;
+  --sp-3:     3rem;
+  --sp-3-5:   3.5rem;
+  --sp-4:     4rem;
+  --sp-5:     5rem;
+  --sp-6:     6rem;
+  --sp-7:     7rem;
+  --sp-8:     8rem;
+  --sp-10:    10rem;
+  --sp-12:    12rem;
+  --sp-15:    15rem;
+
+  /* ─── RADIUS & BORDER ─────────────────────────────────────────────── */
+  --radius-x-small: 0.25rem;
+  --radius-small:   0.375rem;
+  --radius-main:    1rem;
+  --radius-round:   100vw;
+
+  --border-width-main:  1px;
+  --border-width-large: 2px;
+
+  /* ─── SECTION PADDING ─────────────────────────────────────────────── */
+  --pad-v-none:    0rem;
+  --pad-v-xsmall:  2.5rem;
+  --pad-v-small:   5rem;
+  --pad-v-main:    7rem;
+  --pad-v-large:   10rem;
+  --pad-v-xlarge:  15rem;
+  --pad-h-small:   2.5rem;
+  --pad-h-main:    5rem;
+
+  /* ─── GRADIENTS ───────────────────────────────────────────────────── */
+  /* Dark hero gradients */
+  --gradient-forge:     linear-gradient(180deg, #080E23, #4C3D32);
+  --gradient-growth:    linear-gradient(180deg, #1E3239, #02393C);
+  --gradient-warmth:    linear-gradient(180deg, #1C0E1D, #3A172A);
+
+  /* Light section/card gradients */
+  --gradient-sky:       linear-gradient(180deg, #C9D7D7, #F4ECE5);
+  --gradient-golden:    linear-gradient(180deg, #D6D5BF, #F8F7F5);
+  --gradient-platinum:  linear-gradient(180deg, #B8C6C4, #F8F7F5);
+
+  /* Button */
+  --gradient-button-dark: linear-gradient(to right, #FDFEFA 15%, #D6D5BF 100%);
+  --gradient-dark-fade-right: linear-gradient(90deg, #080E23, #080E231A 65%);
+}
+
+/* ─── SEMANTIC ROLES — default (dark) theme ─────────────────────────── */
+:root,
+[data-theme="dark"] {
+  --bg:           var(--swatch-dark);
+  --surface:      var(--swatch-dark-secondary);
+  --text:         var(--swatch-light);
+  --text-muted:   var(--swatch-brand);
+  --border:       var(--swatch-light);
+  --border-muted: rgb(253 254 250 / 0.25);
+  --cta-bg:       transparent;
+  --cta-text:     var(--swatch-dark);
+  --accent:       var(--swatch-yellow);
+  --rule:         var(--swatch-yellow);
+  --rule-muted:   rgb(253 254 250 / 0.25);
+  --bg-gradient:  var(--gradient-forge);
+}
+
+/* Light theme for paper / docs / long-form */
+[data-theme="light"] {
+  --bg:           var(--swatch-light);
+  --surface:      var(--swatch-light-tertiary);
+  --text:         var(--swatch-dark);
+  --text-muted:   var(--swatch-dark-secondary);
+  --border:       var(--swatch-dark);
+  --border-muted: rgb(8 14 35 / 0.25);
+  --cta-bg:       var(--swatch-brand);
+  --cta-text:     var(--swatch-dark);
+  --accent:       var(--swatch-yellow);
+  --rule:         var(--swatch-dark);
+  --rule-muted:   rgb(8 14 35 / 0.25);
+  --bg-gradient:  none;
+}
+
+/* Gradient-theme overlays — swap gradient + accent */
+[data-gradient-theme="forge"] {
+  --bg-gradient: var(--gradient-forge);
+  --accent:      var(--swatch-yellow);
+  --rule:        var(--swatch-yellow);
+}
+[data-gradient-theme="growth"] {
+  --bg-gradient: var(--gradient-growth);
+  --accent:      var(--swatch-green);
+  --rule:        var(--swatch-green);
+}
+[data-gradient-theme="warmth"] {
+  --bg-gradient: var(--gradient-warmth);
+  --accent:      var(--swatch-orange);
+  --rule:        var(--swatch-orange);
+}

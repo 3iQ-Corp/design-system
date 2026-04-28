@@ -1,0 +1,171 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://3iq.io/make-it-matter/tokens.schema.json",
+  "title": "3iQ #MakeItMatter design tokens",
+  "description": "Shape of tokens.json for the #MakeItMatter employer brand campaign. Enforces presence of major sections, names for semantic colour roles, and hex format for swatches.",
+  "type": "object",
+  "required": ["brand", "color", "typography", "size", "gradient", "logo", "voice", "disclaimer"],
+  "additionalProperties": true,
+
+  "$defs": {
+    "hex": {
+      "type": "string",
+      "pattern": "^#([0-9A-Fa-f]{6}|[0-9A-Fa-f]{8})$",
+      "description": "6- or 8-digit hex colour (uppercase preferred)."
+    },
+    "rem": {
+      "type": "string",
+      "pattern": "^-?\\d+(\\.\\d+)?rem$"
+    },
+    "cssLength": {
+      "type": "string",
+      "pattern": "^-?\\d+(\\.\\d+)?(rem|px|em|%|vw|vh)$"
+    },
+    "gradient": {
+      "type": "string",
+      "pattern": "^(linear|radial|conic)-gradient\\("
+    },
+    "colorRole": {
+      "type": "object",
+      "required": ["bg", "surface", "text", "text_muted", "border", "cta_text", "accent", "rule"],
+      "properties": {
+        "bg":         { "anyOf": [{ "$ref": "#/$defs/hex" }, { "const": "transparent" }] },
+        "surface":    { "$ref": "#/$defs/hex" },
+        "text":       { "$ref": "#/$defs/hex" },
+        "text_muted": { "$ref": "#/$defs/hex" },
+        "border":     { "$ref": "#/$defs/hex" },
+        "cta_bg":     { "anyOf": [{ "$ref": "#/$defs/hex" }, { "const": "transparent" }] },
+        "cta_text":   { "$ref": "#/$defs/hex" },
+        "accent":     { "$ref": "#/$defs/hex" },
+        "rule":       { "$ref": "#/$defs/hex" }
+      }
+    }
+  },
+
+  "properties": {
+    "_meta": { "type": "object" },
+
+    "brand": {
+      "type": "object",
+      "required": ["name", "short", "tagline"],
+      "properties": {
+        "name":             { "type": "string" },
+        "short":            { "type": "string" },
+        "tagline":          { "type": "string" },
+        "positioning":      { "type": "string" },
+        "founded":          { "type": "integer", "minimum": 1900 },
+        "hq":               { "type": "string" },
+        "parent":           { "type": "string" },
+        "campaign_version": { "type": "string" }
+      }
+    },
+
+    "color": {
+      "type": "object",
+      "required": ["swatch", "role"],
+      "properties": {
+        "swatch": {
+          "type": "object",
+          "additionalProperties": {
+            "anyOf": [
+              { "$ref": "#/$defs/hex" },
+              { "type": "string", "pattern": "^#[0-9A-Fa-f]{8}$" }
+            ]
+          }
+        },
+        "role": {
+          "type": "object",
+          "required": ["dark", "light"],
+          "properties": {
+            "dark":  { "$ref": "#/$defs/colorRole" },
+            "light": { "$ref": "#/$defs/colorRole" }
+          }
+        },
+        "gradient_theme": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": ["label", "gradient_top", "gradient_bottom", "accent"],
+            "properties": {
+              "label":           { "type": "string" },
+              "gradient_top":    { "$ref": "#/$defs/hex" },
+              "gradient_bottom": { "$ref": "#/$defs/hex" },
+              "accent":          { "$ref": "#/$defs/hex" }
+            }
+          }
+        }
+      }
+    },
+
+    "typography": {
+      "type": "object",
+      "required": ["primary", "secondary", "scale", "line_height", "letter_spacing", "weight_defaults"],
+      "properties": {
+        "scale":          { "type": "object", "additionalProperties": { "$ref": "#/$defs/cssLength" } },
+        "line_height":    { "type": "object", "additionalProperties": { "type": "string" } },
+        "letter_spacing": { "type": "object", "additionalProperties": { "type": "string" } }
+      }
+    },
+
+    "size":    { "type": "object", "additionalProperties": { "$ref": "#/$defs/rem" } },
+    "padding": { "type": "object" },
+    "radius":  { "type": "object", "additionalProperties": { "$ref": "#/$defs/cssLength" } },
+
+    "border_width": {
+      "type": "object",
+      "additionalProperties": { "type": "string", "pattern": "^\\d+px$" }
+    },
+
+    "gradient": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/$defs/gradient" }
+    },
+
+    "logo": {
+      "type": "object",
+      "required": ["mim_primary_navy", "mim_primary_white", "min_width_px"],
+      "properties": {
+        "mim_primary_navy":  { "type": "string" },
+        "mim_primary_white": { "type": "string" },
+        "corporate":         { "type": "string" },
+        "clearspace":        { "type": "string" },
+        "min_width_px":      { "type": "integer", "minimum": 1 },
+        "color_rule":        { "type": "string" }
+      }
+    },
+
+    "highlights": {
+      "type": "object",
+      "properties": {
+        "description":    { "type": "string" },
+        "count":          { "type": "integer" },
+        "color_variants": { "type": "array", "items": { "type": "string" } },
+        "path_pattern":   { "type": "string" }
+      }
+    },
+
+    "voice": {
+      "type": "object",
+      "required": ["tone", "signature_phrases", "do", "dont"],
+      "properties": {
+        "tone":              { "type": "string" },
+        "signature_phrases": { "type": "array", "items": { "type": "string" } },
+        "narrative_lines":   { "type": "array", "items": { "type": "string" } },
+        "do":                { "type": "array", "items": { "type": "string" } },
+        "dont":              { "type": "array", "items": { "type": "string" } }
+      }
+    },
+
+    "values":  { "type": "array", "items": { "type": "object" } },
+    "contact": { "type": "object" },
+
+    "disclaimer": {
+      "type": "object",
+      "required": ["standard"],
+      "properties": {
+        "standard": { "type": "string" },
+        "footer":   { "type": "string" }
+      }
+    }
+  }
+}
