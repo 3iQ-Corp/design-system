@@ -54,6 +54,18 @@ Check each before shipping — these are the things most easily gotten wrong.
 
 ### Logo
 
+The canonical 3iQ wordmark SVG (use this verbatim — never redraw or approximate):
+
+```svg
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 96 30">
+  <rect x="60.48" y="10.57" width="3.76" height="17.7"/>
+  <path d="M52.76,14.44h0c2.16-.99,3.33-3,3.33-5.75,0-4.3-3.63-7.19-9.04-7.19s-9,3.3-9.04,8.04v.37s3.79,0,3.79,0v-.36c.04-2.72,2.16-4.54,5.28-4.54s5.09,1.56,5.09,3.87c0,2.61-2.01,4.17-5.39,4.17h-2.4v3.43h2.58c3.67,0,5.86,1.52,5.86,4.06s-2.29,4.46-5.57,4.46c-3.6,0-5.94-1.98-5.98-5.06v-.37h-3.8v.37c0,5.28,3.67,8.56,9.59,8.56s9.66-3.11,9.66-7.74c0-3.54-1.9-5.51-4-6.31Z"/>
+  <path d="M29.25,0H.75c-.41,0-.75.34-.75.75v28.5c0,.41.34.75.75.75h28.5c.41,0,.75-.34.75-.75V.75c0-.41-.34-.75-.75-.75ZM6.6,6.78h11.52v2.52H6.6v-2.52ZM23.4,13.74v2.52h-11.52v-2.52h11.52ZM8.04,13.2c1.03,0,1.8.77,1.8,1.8s-.77,1.8-1.8,1.8-1.8-.77-1.8-1.8.77-1.8,1.8-1.8ZM18.12,23.22H6.6v-2.52h11.52v2.52ZM21.96,23.76c-1.03,0-1.8-.77-1.8-1.8s.77-1.8,1.8-1.8,1.8.77,1.8,1.8-.77,1.8-1.8,1.8ZM21.96,9.84c-1.03,0-1.8-.77-1.8-1.8s.77-1.8,1.8-1.8,1.8.77,1.8,1.8-.77,1.8-1.8,1.8Z"/>
+  <path d="M62.36,1.87c-1.58,0-2.77,1.19-2.77,2.77s1.19,2.77,2.77,2.77,2.77-1.19,2.77-2.77-1.19-2.77-2.77-2.77Z"/>
+  <path d="M93.66,25.46c-1.24,0-2.4-.56-3.18-1.51,1.89-2.38,2.93-5.52,2.93-8.95,0-3.78-1.25-7.22-3.53-9.67h0c-2.3-2.47-5.55-3.83-9.15-3.83s-6.85,1.36-9.15,3.83c-2.28,2.45-3.53,5.88-3.53,9.67s1.25,7.22,3.53,9.66c2.3,2.47,5.55,3.83,9.15,3.83,2.6,0,5-.72,7.01-2.04l.08.11c.78,1.05,2.01,1.67,3.32,1.67h2.84v-2.78h-.31ZM88.01,20.62l-1.31-1.78c-.78-1.05-2.01-1.67-3.32-1.67h-3.75v3.69h3.02c.59,0,1.15.28,1.51.76l1.31,1.77c-1.33.91-2.93,1.42-4.74,1.42h0c-5.1,0-8.67-4.03-8.67-9.81s3.57-9.81,8.67-9.81,8.67,4.04,8.67,9.81c0,2.16-.5,4.07-1.39,5.62Z"/>
+</svg>
+```
+
 - **Only ever use the committed file:** `assets/logos/3iq_logo.svg`. In JSX, import the `Logo` component from `ui_kits/website/Icons.jsx`. Never retype "3iQ" in Denton or any display font and present it as the logo. Never redraw from memory. Never trace. Never generate a new SVG. If the file isn't available in the runtime, **say so and stop** — don't improvise.
 - viewBox `0 0 96 30`. Fill is `currentColor` — set CSS `color: #FDFCFA` on dark surfaces, `color: #080E23` on light. Never fill child `<path>` elements directly; never recolor to an accent.
 - Minimum width `80px`. Set `width` only; the viewBox handles height. Standard sizes: 80 (nav) · 96 (footer, email signature) · 128+ (hero).
